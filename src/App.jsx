@@ -1,122 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from "react"
+import { Container, Dropdown, ButtonGroup, Button } from "react-bootstrap"
+import MyNavbar from "./components/MyNavbar.jsx"
+import MovieGallery from "./components/MovieGallery.jsx"
+import Footer from "./components/Footer.jsx"
+import ProfilePage from "./components/ProfilePage.jsx"
+import SettingsPage from "./components/SettingsPage.jsx"
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [page, setPage] = useState("home")
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      {page !== "profile" && <MyNavbar setPage={setPage} />}
 
-      <div className="ticks"></div>
+      {page === "home" && (
+        <main className="bg-netflix text-white min-vh-100">
+          <Container fluid className="px-5">
+            <div className="d-flex align-items-center gap-4 py-4">
+              <h1 className="fw-bold m-0">TV Shows</h1>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+              <Dropdown>
+          <Dropdown.Toggle
+          variant="dark"
+          className="border border-light rounded-0 px-3 py-1"
+          >       
+         Genres 
+          </Dropdown.Toggle>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+     <Dropdown.Menu className="bg-dark border-0 mt-2">
+    <Dropdown.Item className="text-white bg-dark">Action</Dropdown.Item>
+    <Dropdown.Item className="text-white bg-dark">Fantasy</Dropdown.Item>
+    <Dropdown.Item className="text-white bg-dark">Drama</Dropdown.Item>
+    <Dropdown.Item className="text-white bg-dark">Horror</Dropdown.Item>
+    </Dropdown.Menu>
+     </Dropdown>
+
+              <ButtonGroup className="ms-auto d-none d-md-flex">
+                <Button variant="outline-secondary" size="sm">☰</Button>
+                <Button variant="outline-secondary" size="sm">▦</Button>
+              </ButtonGroup>
+            </div>
+
+            <MovieGallery title="Trending Now" searchQuery="harry potter" />
+            <MovieGallery title="Watch It Again" searchQuery="lord of the rings" />
+            <MovieGallery title="New Releases" searchQuery="star wars" />
+          </Container>
+
+          <Footer />
+        </main>
+      )}
+
+      {page === "profile" && <ProfilePage setPage={setPage} />}
+      {page === "settings" && <SettingsPage />}
     </>
   )
 }
 
-export default App
+export default App 
