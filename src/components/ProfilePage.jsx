@@ -1,12 +1,15 @@
 import { Button, Form, Image } from "react-bootstrap"
+import { Link, useNavigate } from "react-router-dom"
 import { FaPencilAlt } from "react-icons/fa"
 
-function ProfilePage({ setPage }) {
+function ProfilePage() {
+  const navigate = useNavigate()
+
   return (
     <main className="bg-netflix min-vh-100 text-white p-4">
-      <div onClick={() => setPage("home")} className="cursor-pointer">
-        <img src="/logo.png"  alt="logo" height="40" />
-      </div>
+      <Link to="/" className="cursor-pointer">
+        <img src="/logo.png" alt="logo" height="40" />
+      </Link>
 
       <section className="profile-box mx-auto mt-5">
         <h1 className="display-3 border-bottom border-secondary pb-2">
@@ -15,22 +18,14 @@ function ProfilePage({ setPage }) {
 
         <div className="d-flex gap-4 pt-4 profile-content">
           <div className="position-relative">
-            <Image
-              src="/Daniele.jpeg"
-              width="130"
-              height="130"
-              className="object-fit-cover"
-            />
-
+            <Image src="/Daniele.jpeg" width="130" height="130" className="object-fit-cover" />
             <span className="edit-pencil">
               <FaPencilAlt />
             </span>
           </div>
 
           <div className="flex-grow-1 text-secondary">
-            <div className="bg-secondary text-white fs-5 p-2 mb-4">
-              Daniele Bulgaru
-            </div>
+            <div className="bg-secondary text-white fs-5 p-2 mb-4">Daniele Bulgaru</div>
 
             <Form.Label>Language:</Form.Label>
 
@@ -77,11 +72,11 @@ function ProfilePage({ setPage }) {
         <hr />
 
         <div className="d-flex gap-3 profile-buttons">
-          <Button variant="light" className="rounded-0 px-4 fw-bold" onClick={() => setPage("home")}>
+          <Button variant="light" className="rounded-0 px-4 fw-bold" onClick={() => navigate("/")}>
             SAVE
           </Button>
 
-          <Button variant="outline-secondary" className="rounded-0 px-4 fw-bold" onClick={() => setPage("home")}>
+          <Button variant="outline-secondary" className="rounded-0 px-4 fw-bold" onClick={() => navigate("/")}>
             CANCEL
           </Button>
 
