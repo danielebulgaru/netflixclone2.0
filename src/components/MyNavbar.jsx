@@ -26,7 +26,7 @@ function MyNavbar({ setPage }) {
             <span>KIDS</span>
             <FaBell />
 
-            <Image
+            <img
               src="/Daniele.jpeg"
               width="35"
               height="35"

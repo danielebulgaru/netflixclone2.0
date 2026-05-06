@@ -1,4 +1,4 @@
-import { Container, Row, Col, Button, Image } from "react-bootstrap"
+import { Container, Row, Col, Button,} from "react-bootstrap"
 
 function SettingsPage() {
   return (
@@ -90,7 +90,7 @@ function SettingsPage() {
 
           <Col md={5}>
             <div className="d-flex align-items-center gap-2">
-              <Image
+              <img
                 src="/Daniele.jpeg"
                 width="35"
                 height="35"
